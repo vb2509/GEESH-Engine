@@ -1,3 +1,4 @@
+//Momentum solution from https://www.openprocessing.org/sketch/56261
 class Particle {
   float radius=6f;
   PVector location=new PVector(0,0);
