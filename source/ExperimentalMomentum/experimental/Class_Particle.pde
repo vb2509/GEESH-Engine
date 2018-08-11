@@ -51,28 +51,27 @@ class Particle {
     
     if(dist<radius+other.radius){
       
-      Float v1x=(((this.mass-other.mass)/(this.mass+other.mass))*velocity.x);
-      
-      Float v1y=(((this.mass-other.mass)/(this.mass+other.mass))*velocity.y);
-      
-      Float v2x=2*mass/(mass+other.mass)*velocity.x;
-      Float v2y=2*mass/(mass+other.mass)*velocity.y;
-      
-      this.setVelocity(v1x,v1y);
-      other.setVelocity(v2x,v2y);
-      
-      
+      Float ui = this.velocity.x;
+      Float uj = other.velocity.x;          
+      this.velocity.x = (other.mass*(uj-ui) + this.mass*ui + other.mass*uj)/( this.mass + other.mass);
+      other.velocity.x = (this.mass*(ui-uj) + this.mass*ui + other.mass*uj)/( this.mass + other.mass);
+        
+      ui = this.velocity.y;
+      uj = other.velocity.y;          
+      this.velocity.y = (other.mass*(uj-ui) + this.mass*ui + other.mass*uj)/( this.mass + other.mass);
+      other.velocity.y = (this.mass*(ui-uj)+ this.mass*ui + other.mass*uj)/( this.mass + other.mass);
+
       if(location.x<other.location.x){
-        location.x-=1;
+        location.x-=(1);
       }
       else if(location.x>other.location.x){
-        location.x+=1;
+        location.x+=(1);
       }
       if(location.y<other.location.y){
-        location.y-=1;
+        location.y-=(1);
       }
       else if(location.y>other.location.y){
-        location.y+=1;
+        location.y+=(1);
       }
      
     }
